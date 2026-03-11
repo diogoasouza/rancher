@@ -154,7 +154,7 @@ func GenerateIndex(ociClient *Client, URL string, credentialSecret *corev1.Secre
 			}
 
 			existingTags[semverTag.String()] = true
-			if clusterRepoSpec.OCIOptions.DownloadAllTags {
+			if clusterRepoSpec.OCIOptions != nil && clusterRepoSpec.OCIOptions.DownloadAllTags {
 				ociClient.tag = semverTag.String()
 				orasRepository, err := ociClient.GetOrasRepository()
 				if err != nil {
